@@ -1,0 +1,47 @@
+{
+  "name":        "unindented/ahshok",
+  "description": "Mask Amazon associate links.",
+  "homepage":    "http://github.com/unindented/ahshok-slim",
+  "license":     "MIT",
+
+  "authors": [
+    {
+      "name":     "Daniel Perez Alvarez",
+      "email":    "unindented@gmail.com",
+      "homepage": "http://unindented.org/",
+      "role":     "Developer"
+    }
+  ],
+
+  "require": {
+    "php":                              ">=5.3.0",
+    "pimple/pimple":                    "~1.1.1",
+    "slim/slim":                        "~2.4.3",
+    "slim/extras":                      "~2.0.3",
+    "zendframework/zendservice-amazon": "~2.0.2"
+  },
+
+  "require-dev": {
+    "phing/phing":     "~2.8.2",
+    "phpunit/phpunit": "~4.2.2",
+    "phpmd/phpmd":     "~2.0.0",
+    "phploc/phploc":   "~2.0.6"
+  },
+
+  "autoload": {
+    "psr-0": {
+      "Ahshok\\": "src/"
+    }
+  },
+
+  "scripts": {
+    "post-install-cmd": [
+      "Ahshok\\Composer\\Script\\Config::create",
+      "Ahshok\\Composer\\Script\\Database::prepare"
+    ],
+    "post-update-cmd": [
+      "Ahshok\\Composer\\Script\\Config::create",
+      "Ahshok\\Composer\\Script\\Database::prepare"
+    ]
+  }
+}

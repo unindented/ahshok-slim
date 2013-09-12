@@ -1,0 +1,9 @@
+/.vagrant/
+/coverage/
+/vendor/
+/build.properties
+/config.php
+/index.html
+/phpunit.xml
+/db/*.db
+/log/*.log

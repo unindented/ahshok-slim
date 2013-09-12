@@ -1,0 +1,88 @@
+{
+  "provider": {
+    "type": "local",
+    "os": "ubuntu",
+    "local": {
+      "url": "http://files.vagrantup.com/precise64.box",
+      "name": "precise64",
+      "personal_name": "ahshok",
+      "ip": "192.168.168.168",
+      "memory": "1024",
+      "port_forward": {
+        "host": "",
+        "guest": ""
+      },
+      "foldertype": "nfs",
+      "synced_folder": {
+        "source": "./",
+        "target": "/var/www/"
+      }
+    }
+  },
+
+  "server": {
+    "packages": "build-essential,curl,vim,tmux,git-core"
+  },
+
+  "webserver": "apache",
+
+  "apache": {
+    "modules": [
+      "rewrite"
+    ],
+    "vhosts": {
+      "1": {
+        "servername": "ahshok.dev",
+        "serveraliases": "www.ahshok.dev",
+        "docroot": "/var/www/web/",
+        "port": "80",
+        "envvars": "APP_ENV dev,APP_DEBUG true"
+      }
+    }
+  },
+
+  "php": {
+    "version": "php53",
+    "modules": {
+      "composer": {
+        "installed": "1"
+      },
+      "php": [
+        "php5-cli",
+        "php5-curl",
+        "php5-intl",
+        "php5-mcrypt",
+        "php-apc"
+      ],
+      "xhprof": {
+        "installed": "1"
+      }
+    },
+    "inilist": {
+      "xdebug": "",
+      "php": {
+        "date.timezone": "Europe/London"
+      },
+      "custom": "error_reporting = -1,display_errors = On,display_startup_errors = On,short_open_tag = Off"
+    }
+  },
+
+  "database": "mysql",
+
+  "mysql": {
+    "root": "<REMOVED>",
+    "phpmyadmin": "1",
+    "dbuser": {
+      "1": {
+        "privileges": [
+          "ALL"
+        ],
+        "user": "ahshok",
+        "password": "<REMOVED>",
+        "dbname": "ahshok",
+        "host": "localhost",
+        "sql": ""
+      }
+    }
+  }
+}

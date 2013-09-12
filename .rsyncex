@@ -1,0 +1,16 @@
+/.git/
+/.vagrant/
+/coverage/
+/puppet/
+/.gitignore
+/.gitmodules
+/.rsyncex
+/.travis.yml
+/Vagrantfile
+/build.properties
+/build.properties.dist
+/config.php.dist
+/phpunit.xml.dist
+/puphpet.json
+/db/*.db
+/log/*.log

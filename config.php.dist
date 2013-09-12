@@ -1,0 +1,80 @@
+<?php
+
+// Common configuration.
+$default = array(
+  'slim' => array(
+    'log.enabled' => true,
+    'log.writer'  => new \Slim\Extras\Log\DateTimeFileWriter(
+      array(
+        'path'        => __DIR__ . '/log/',
+        'name_format' => 'Y-m-d'
+      )
+    )
+  ),
+
+  'pdo' => array(
+    'options' => array(
+      \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+      \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+    )
+  ),
+
+  'amazon' => array(
+    'country' => 'US',
+    'tag'     => 'realtag-20',
+    'key'     => 'REALACCESSKEYID',
+    'secret'  => 'REALSECRETACCESSKEY'
+  )
+);
+
+// Environment-specific configuration.
+$specific = array(
+  'test' => array(
+    'slim' => array(
+      'log.level' => \Slim\Log::DEBUG
+    ),
+
+    'schema' => __DIR__ . '/scripts/sqlite/schema.sql',
+    'seed'   => __DIR__ . '/scripts/sqlite/seed.sql',
+
+    'pdo' => array(
+      'dsn'      => 'sqlite::memory:',
+      'username' => NULL,
+      'password' => NULL
+    )
+  ),
+
+  'development' => array(
+    'slim' => array(
+      'log.level' => \Slim\Log::DEBUG
+    ),
+
+    'schema' => __DIR__ . '/scripts/sqlite/schema.sql',
+
+    'pdo' => array(
+      'dsn'      => 'sqlite:' . __DIR__ . '/db/app.db',
+      'username' => NULL,
+      'password' => NULL
+    )
+  ),
+
+  'production' => array(
+    'slim' => array(
+      'log.level' => \Slim\Log::ERROR
+    ),
+
+    'schema' => __DIR__ . '/scripts/mysql/schema.sql',
+
+    'pdo' => array(
+      'dsn'      => 'mysql:host=localhost;port=3306;dbname=ahshok;charset=utf8',
+      'username' => 'ahshok',
+      'password' => 'ahshok'
+    )
+  )
+);
+
+// Return the appropriate configuration.
+$mode = getenv('SLIM_MODE');
+$mode = $mode ? $mode : 'development';
+
+return array_merge_recursive($default, $specific[$mode]);

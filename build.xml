@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Ahshok" default="test">
+
+  <property file="build.properties" />
+
+  <target name="clean">
+    <delete dir="./coverage" />
+    <delete>
+      <fileset dir="./db">
+        <include name="*.db" />
+      </fileset>
+    </delete>
+    <delete>
+      <fileset dir="./log">
+        <include name="*.log" />
+      </fileset>
+    </delete>
+    <delete file="./index.html" />
+  </target>
+
+  <target name="test">
+    <exec executable="vendor/bin/phpunit" passthru="true" checkreturn="true" />
+  </target>
+
+  <target name="mess">
+    <exec executable="vendor/bin/phpmd" passthru="true" checkreturn="true">
+      <arg path="./src" />
+      <arg value="text" />
+      <arg value="cleancode,codesize,controversial,design,naming,unusedcode" />
+    </exec>
+  </target>
+
+  <target name="loc">
+    <exec executable="vendor/bin/phploc" passthru="true" checkreturn="true">
+      <arg value="--exclude=vendor" />
+      <arg path="." />
+    </exec>
+  </target>
+
+  <target name="deploy">
+    <exec executable="rsync" passthru="true" checkreturn="true">
+      <arg value="--archive" />
+      <arg value="--compress" />
+      <arg value="--recursive" />
+      <arg value="--verbose" />
+      <arg value="--exclude-from=.rsyncex" />
+      <arg path="." />
+      <arg path="${ssh.destination}" />
+    </exec>
+  </target>
+
+</project>
