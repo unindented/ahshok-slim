@@ -1,4 +1,4 @@
-# Ahshok [![Build Status](https://img.shields.io/travis/unindented/ahshok-slim.svg)](http://travis-ci.org/unindented/ahshok-slim) [![Dependency Status](https://img.shields.io/gemnasium/unindented/ahshok-slim.svg)](https://gemnasium.com/unindented/ahshok-slim)
+# Ahshok [![Build Status](https://img.shields.io/travis/unindented/ahshok-slim.svg)](http://travis-ci.org/unindented/ahshok-slim) [![Dependency Status](https://img.shields.io/gemnasium/unindented/ahshok-slim.svg)](https://gemnasium.com/unindented/ahshok-slim) ![Abandoned](https://img.shields.io/badge/status-abandoned-red.svg)
 
 Small Slim app that masks Amazon associate links, so that when the client makes the following request:
 
